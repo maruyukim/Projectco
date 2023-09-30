@@ -1,0 +1,7 @@
+{
+  "name": "yubilly-angular",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
