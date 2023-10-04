@@ -59,7 +59,7 @@ Most of the development work will be done under ./yubilly-angular/src/app/
 
 ```
 # Created a new app with
-ionic start yubilly-angular blank --type=angular
+ionic start yac blank --type=angular --capacitor
 ```
 
 ## Running the application

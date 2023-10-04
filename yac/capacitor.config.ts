@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'yubilly-angular',
+  appName: 'yac',
   webDir: 'www',
   server: {
     androidScheme: 'https'

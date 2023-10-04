@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SingleReceiptComponent } from './single-receipt.component';
+import { SigninComponent } from './signin.component';
 
-describe('SingleReceiptComponent', () => {
-  let component: SingleReceiptComponent;
-  let fixture: ComponentFixture<SingleReceiptComponent>;
+describe('SigninComponent', () => {
+  let component: SigninComponent;
+  let fixture: ComponentFixture<SigninComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SingleReceiptComponent ],
+      declarations: [ SigninComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SingleReceiptComponent);
+    fixture = TestBed.createComponent(SigninComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
