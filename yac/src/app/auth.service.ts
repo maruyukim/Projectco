@@ -4,15 +4,19 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
+
+  static accessToken = '';
+
   private apiUrl = 'https://api2.yubilly.com/auth/signInSimple';
 
   constructor(private http: HttpClient) {}
 
-  signIn(username: string, password: string) {
+  signIn(email: string, password: string) {
     const body = {
-      username: "appuser@yubilly.com",
-      password: "appuser01",
+      username: email,
+      password: password,
     };
 
     return this.http.post(this.apiUrl, body);
