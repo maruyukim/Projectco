@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SampleCardComponent } from './sample-card.component';
+import { SampleComponent } from './sample.component';
 
 describe('SampleCardComponent', () => {
-  let component: SampleCardComponent;
-  let fixture: ComponentFixture<SampleCardComponent>;
+  let component: SampleComponent;
+  let fixture: ComponentFixture<SampleComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

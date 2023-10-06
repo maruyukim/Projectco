@@ -1,0 +1,31 @@
+
+<!-- We want to make a card for each response in the query -->
+<ion-card *ngFor="let item of responseJSONArray">
+  <ion-card-header>
+    <ion-card-title>Merchant: {{ item[1].merchantName }} (id: {{ item[1].merchantId }})</ion-card-title>
+    <ion-card-subtitle>Receipt ID: {{ item[1].receiptId }}</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    Date: {{ item[1].invoiceDate }}
+  </ion-card-content>
+  <ion-card-content>
+    Total Amount: {{ item[1].total }}
+  </ion-card-content>
+  <ion-card-content>
+    Currency: {{ item[1].currency }}
+  </ion-card-content>
+  <ion-card-content>
+    Label: {{ item[1].labelName }} (#{{ item[1].labelId }})
+  </ion-card-content>
+  <ion-card-content>
+    Label Hex: {{ item[1].labelColor }}
+  </ion-card-content>
+  <ion-card-content>
+    Email: {{ item[1].hasEmail }}
+  </ion-card-content>
+  <ion-card-content>
+    Attachment: {{ item[1].hasAttachment }}
+  </ion-card-content>
+
+</ion-card>
