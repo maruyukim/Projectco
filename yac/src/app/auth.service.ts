@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class AuthService {
 
-  static accessToken = '';
+  static accessToken = localStorage.getItem('accessToken');
 
   private apiUrl = 'https://api2.yubilly.com/auth/signInSimple';
 

@@ -1,16 +1,13 @@
-<button (click)="sendPostRequest()">Send POST Request</button>
-
 <form [formGroup]="login" (submit)=sendPostRequest()>
-    <div>
-      <label>email</label>
-      <input type="text" formControlName="email" placeholder="email" />
-    </div>
+  <div>
+    <label>email</label><br>
+    <input type="text" formControlName="email" placeholder="email" />
+  </div>
 
-    <div>
-      <label>password</label>
-      <input type="password" formControlName="password" placeholder="password" />
-    </div>
+  <div>
+    <label>password</label><br>
+    <input type="password" formControlName="password" placeholder="password" />
+  </div>
 
-    <button type="submit">login</button>
-  </form>
-
+  <button type="submit">login</button>
+</form>

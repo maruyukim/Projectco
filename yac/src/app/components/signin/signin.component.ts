@@ -20,19 +20,6 @@ export class SigninComponent implements OnInit {
     private router: Router
   ) {}
 
-  signIn(username: string, password: string) {
-    this.authService.signIn(username, password).subscribe(
-      (response) => {
-        // Handle the response from the API
-        console.log('Response:', response);
-      },
-      (error) => {
-        // Handle errors
-        console.error('Error:', error);
-      }
-    );
-  }
-
   sendPostRequest() {
     
     const email = this.login.get('email')?.value;
@@ -41,15 +28,10 @@ export class SigninComponent implements OnInit {
     // Call your service's signIn method to send the POST request
     this.authService.signIn(email, password).subscribe(
       (response) => {
-        // Handle the response from the API
-        // console.log('Response:', response);
-
         const res = JSON.stringify(response);
         const resJSON = JSON.parse(res);
 
-        AuthService.accessToken = resJSON.accessToken;
-
-        console.log(AuthService.accessToken);
+        localStorage.setItem('accessToken', resJSON.accessToken);
 
         this.router.navigate(['/dashboard']);
 
@@ -67,5 +49,4 @@ export class SigninComponent implements OnInit {
       password: ['', Validators.required],
     });
   }
-
 }
