@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -17,33 +16,20 @@ export class SigninComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router
   ) {}
 
-  sendPostRequest() {
-    
+  // This function is called when the user clicks the Sign In button
+  sendLoginRequest() {
+    // Pull email and password from the form
     const email = this.login.get('email')?.value;
     const password = this.login.get('password')?.value; 
 
-    // Call your service's signIn method to send the POST request
-    this.authService.signIn(email, password).subscribe(
-      (response) => {
-        const res = JSON.stringify(response);
-        const resJSON = JSON.parse(res);
-
-        localStorage.setItem('accessToken', resJSON.accessToken);
-
-        this.router.navigate(['/dashboard']);
-
-      },
-      (error) => {
-        // Handle errors
-        console.error('Error:', error);
-      }
-    );
+    // Call the AuthService signIn method for signing in
+    this.authService.signIn(email, password);
   }
   
   ngOnInit() {
+    // Establishes the login form and its validators
     this.login = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
