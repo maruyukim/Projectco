@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { NavigationComponent } from 'src/app/components/navigation/navigation.component';
 import { SampleComponent } from 'src/app/components/sample/sample.component';
 
 @Component({
@@ -8,7 +9,7 @@ import { SampleComponent } from 'src/app/components/sample/sample.component';
   templateUrl: './sample.page.html',
   styleUrls: ['./sample.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, SampleComponent]
+  imports: [IonicModule, CommonModule, SampleComponent, NavigationComponent]
 })
 
 export class SamplePage implements OnInit {
