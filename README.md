@@ -78,7 +78,7 @@ ionic g service services/receipts
 
 ### Making New Interceptors
 
-> This was used to create the interceptor to add the token to subsequent server requests.
+> This was used to create the interceptor to add the access token to subsequent server requests.
 
 ```
 # Generates a new interceptor called 'auth'
@@ -134,13 +134,14 @@ The tells Angular to loop over the items in `responseJSONArray` from the .ts fil
 
 > We need to use `item[1].key` because the index of the `item` is stored at `item[0]`.
 
-#### Inside `/pages/dashboard/`
+#### Inside `/pages/sample/`
 
-As of 2023/10/06, the sample component is being rendered at the `/dashboard/` endpoint, which is the immediate re-direct after a user logs in. 
+The sample component is being rendered at the `/sample` endpoint. 
+See `/app/src/app.routes.ts` for more information.
 
-Looking inside `dashboard.page.ts` shows no logic, but please note that the `SampleComponent` was imported at the top of the file, as well as under `@Components`. This is how we tell the dashboard page where to find the components it will need to render to the screen. 
+Looking inside `sample.page.ts` shows no logic, but please note that the `SampleComponent` was imported at the top of the file, as well as under `@Components`. This is how we tell the dashboard page where to find the components it will need to render to the screen. 
 
-The `dashboard.page.html` file is equally straight-forward. The `ion-header` and `ion-content` components are automatically created when a new page is generated. Lines 14 to 16 show how our sample component is being rendered inside the dashboard page: 
+The `sample.page.html` file is equally straight-forward. The `ion-header` and `ion-content` components are automatically created when a new page is generated. Lines 14 to 16 show how our sample component is being rendered inside the dashboard page: 
 
 ```
 <div id="container">
@@ -163,14 +164,52 @@ http://localhost:8100/new-page
 
 When working with calls to the server, use the `sample-component` as a guide and do not worry about sending the authentication token, that is being handled by `/interceptors/auth.interceptor.ts`. Please report any server authentication related bugs.
 
+#### Using Git
+
 > Please create a new **git branch** before pushing to the repository. This avoids merge conflicts with people working in the same files.
+
+```
+# Clone the repo
+git clone <repo-link>
+
+# Create a new branch
+git branch <name>
+
+# Move to a different branch
+git checkout <name>
+
+# Create and move to a new branch
+git checkout -b <name
+
+# Push the new branch to the repo
+git push --set-upstream origin <name>
+```
 
 ## Handling Authentication
 
+User authentication is being handled by the Authentication service at `/src/app/auth.service.ts`. 
+
 ### Authentication Service
+
+The `auth.service.ts` file contains all of the logic associated with maintaining a connection to the server. The `static accessToken` is used by the Interceptor to add the token to all subsequent outgoing requests. 
+
 ### Interceptor
-### Login Component
+
+Found at `src/app/interceptors/auth.interceptor.ts`, this file is responsible for intercepting any outgoing messages to the server and adding the correct headers to the request.
+
+### Sign In Component
+
+The `SignInComponent` is an example of how Angular handles forms. It does not contain the logic for actually signing in, it handles gathering the user information and forwards it to the Authenication Service at `src/app/auth.service`.  
+
 ### To Do
+
+1. Better user management on incorrect sign in attempts
+2. User Registration
+3. Always re-direct to the sign in page when no accessToken is present
+4. Sign In and Sign Out buttons appearing as relevant
+5. Refresh Tokens
+6. Interceptor needs to not intercept if `AuthService.accessToken` is empty
+7. More strict user sign in validation
 
 ## Resources
 

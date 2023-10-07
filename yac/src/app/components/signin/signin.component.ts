@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   imports: [ReactiveFormsModule]
 })
 
-export class SigninComponent implements OnInit {
+export class SignInComponent implements OnInit {
   login!: FormGroup;
 
   constructor(
