@@ -17,5 +17,5 @@ export const routes: Routes = [
   {
     path: 'sample',
     loadComponent: () => import('./pages/sample/sample.page').then( m => m.SamplePage)
-  },
+  }, 
 ];
