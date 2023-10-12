@@ -25,6 +25,11 @@ export class NavigationComponent  implements OnInit {
     this.router.navigate(['/dashboard']);
   }
 
+  sendToReceiptsPage() {
+    // Send the user to the dashboard
+    this.router.navigate(['/receipts']);
+  }
+
   ngOnInit() {}
 
 }

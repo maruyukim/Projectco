@@ -1,0 +1,41 @@
+/* Make sure the body and html elements take up the full height of the page */
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+  /* Use Flexbox to center the container */
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+    /* Optional: Add some padding and background styling */
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+  /* Style your component window */
+.center-container > div {
+    /* Optional: Add some padding, border, and background styling */
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+table {
+    border-collapse: collapse; /* ensures that borders between cells are shared */
+}
+
+th, td {
+    border: 1px solid #000; /* change #000 to any color you prefer for the border */
+    padding: 8px; /* optional: for some spacing inside cells */
+    text-align: left; /* optional: align text to the left */
+}
+
+.component-border {
+    border: 2px solid #000; /* Change #000 to any color you prefer for the border */
+    border-radius: 8px; /* Optional: for rounded corners */
+    padding: 16px; /* Optional: for some spacing between the border and the content */
+}
