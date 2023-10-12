@@ -5,12 +5,13 @@ import { NavigationComponent } from 'src/app/components/navigation/navigation.co
 import { LastTenReceiptsComponent } from 'src/app/components/last-ten-receipts/last-ten-receipts.component';
 import { TodayExpensesComponent } from 'src/app/components/today-expenses/today-expenses.component';
 import { LastThirtyDaysExpensesComponent } from 'src/app/components/last-thirty-days-expenses/last-thirty-days-expenses.component';
+import { LastSevenDaysExpensesComponent } from 'src/app/components/last-seven-days-expenses/last-seven-days-expenses.component';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, NavigationComponent, LastTenReceiptsComponent, TodayExpensesComponent, LastThirtyDaysExpensesComponent]
+  imports: [IonicModule, CommonModule, NavigationComponent, LastTenReceiptsComponent, TodayExpensesComponent, LastSevenDaysExpensesComponent, LastThirtyDaysExpensesComponent]
 })
 
 export class DashboardPage implements OnInit {
