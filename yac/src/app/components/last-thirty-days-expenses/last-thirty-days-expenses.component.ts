@@ -5,17 +5,18 @@ import { AuthService } from 'src/app/auth.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-today-expenses',
-  templateUrl: './today-expenses.component.html',
-  styleUrls: ['./today-expenses.component.scss'],
+  selector: 'app-last-thirty-days-expenses',
+  templateUrl: './last-thirty-days-expenses.component.html',
+  styleUrls: ['./last-thirty-days-expenses.component.scss'],
   standalone: true,
   imports: [CommonModule],
   providers: [HttpClient]
 })
-export class TodayExpensesComponent implements OnInit {
+
+export class LastThirtyDaysExpensesComponent implements OnInit {
   receipts: Receipt[] = [];
   receiptsUrl = "";
-  todayTotal = 0;
+  lastThirtyDaysTotal = 0;
 
   constructor(
     private http: HttpClient,
@@ -23,38 +24,38 @@ export class TodayExpensesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.fetchTodayReceipts();
+    this.fetchThirtyDaysReceipts();
   }
 
   calculateTodayExpenses() {
     for (let i = 0; i < this.receipts.length; i++) {
-      this.todayTotal += parseFloat(this.receipts[i].total);
+      this.lastThirtyDaysTotal += parseFloat(this.receipts[i].total);
     }
+    console.log("last30days:" + this.lastThirtyDaysTotal);
   }
-  fetchTodayReceipts(): void {
+  fetchThirtyDaysReceipts(): void {
     const headers = {
       Authorization: `Bearer ${AuthService.accessToken}`  // Use accessToken from AuthService
     };
-    this.receiptsUrl = "https://api1.yubilly.com/receipts?dateFrom=" + this.getCurrentDateFormatted()
+    this.receiptsUrl = "https://api1.yubilly.com/receipts?dateFrom=" + this.get30DaysAgoFormattedDate()
+    console.log("url=" + this.receiptsUrl);
     this.http.get<Receipt[]>(this.receiptsUrl)
       .subscribe(response => {
         this.receipts = response;  // Assuming response is the array of Receipts objects
+        this.calculateTodayExpenses();
       });
-    this.calculateTodayExpenses();
   }
 
-  getCurrentDateFormatted(): string {
+  get30DaysAgoFormattedDate(): string {
     const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() - 30);
 
-    // Get the year, month, and day
     const year = currentDate.getFullYear();
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
     const day = currentDate.getDate().toString().padStart(2, '0');
 
-    // Format the date as yyyy-mm-dd
-    const formattedDate = `${year}-${month}-${day}`;
-
-    return formattedDate;
+    return `${year}-${month}-${day}`;
   }
 
 }
+
