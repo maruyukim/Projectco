@@ -5,18 +5,17 @@ import { AuthService } from 'src/app/auth.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-last-thirty-days-expenses',
-  templateUrl: './last-thirty-days-expenses.component.html',
-  styleUrls: ['./last-thirty-days-expenses.component.scss'],
+  selector: 'app-last-seven-days-expenses',
+  templateUrl: './last-seven-days-expenses.component.html',
+  styleUrls: ['./last-seven-days-expenses.component.scss'],
   standalone: true,
   imports: [CommonModule],
   providers: [HttpClient]
 })
-
-export class LastThirtyDaysExpensesComponent implements OnInit {
+export class LastSevenDaysExpensesComponent implements OnInit {
   receipts: Receipt[] = [];
   receiptsUrl = "";
-  lastThirtyDaysTotal = 0;
+  lastSevenDaysTotal = 0;
 
   constructor(
     private http: HttpClient,
@@ -24,31 +23,31 @@ export class LastThirtyDaysExpensesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.fetchThirtyDaysReceipts();
+    this.fetchSevenDaysReceipts();
   }
 
-  calculateLastThirtyDaysExpenses() {
+  calculateLastSevenDaysExpenses() {
     for (let i = 0; i < this.receipts.length; i++) {
-      this.lastThirtyDaysTotal += parseFloat(this.receipts[i].total);
+      this.lastSevenDaysTotal += parseFloat(this.receipts[i].total);
     }
-    console.log("last30days:" + this.lastThirtyDaysTotal);
+    console.log("last7days:" + this.lastSevenDaysTotal);
   }
-  fetchThirtyDaysReceipts(): void {
+  fetchSevenDaysReceipts(): void {
     const headers = {
       Authorization: `Bearer ${AuthService.accessToken}`  // Use accessToken from AuthService
     };
-    this.receiptsUrl = "https://api1.yubilly.com/receipts?dateFrom=" + this.get30DaysAgoFormattedDate()
+    this.receiptsUrl = "https://api1.yubilly.com/receipts?dateFrom=" + this.get7DaysAgoFormattedDate()
     console.log("url=" + this.receiptsUrl);
     this.http.get<Receipt[]>(this.receiptsUrl)
       .subscribe(response => {
         this.receipts = response;  // Assuming response is the array of Receipts objects
-        this.calculateLastThirtyDaysExpenses();
+        this.calculateLastSevenDaysExpenses();
       });
   }
 
-  get30DaysAgoFormattedDate(): string {
+  get7DaysAgoFormattedDate(): string {
     const currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() - 30);
+    currentDate.setDate(currentDate.getDate() - 7);
 
     const year = currentDate.getFullYear();
     const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
