@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Receipt } from 'src/app/models/receipt.dto';
 import { AuthService } from 'src/app/auth.service';
 import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-last-thirty-days-expenses',
   templateUrl: './last-thirty-days-expenses.component.html',
   styleUrls: ['./last-thirty-days-expenses.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, IonicModule, LastThirtyDaysExpensesComponent],
   providers: [HttpClient]
 })
 

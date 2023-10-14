@@ -9,7 +9,7 @@ describe('LastSevenDaysExpensesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LastSevenDaysExpensesComponent ],
+      declarations: [LastSevenDaysExpensesComponent],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

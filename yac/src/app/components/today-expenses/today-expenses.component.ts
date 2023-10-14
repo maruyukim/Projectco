@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { Receipt } from 'src/app/models/receipt.dto';
 import { AuthService } from 'src/app/auth.service';
@@ -9,7 +10,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './today-expenses.component.html',
   styleUrls: ['./today-expenses.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, IonicModule, TodayExpensesComponent],
   providers: [HttpClient]
 })
 export class TodayExpensesComponent implements OnInit {
