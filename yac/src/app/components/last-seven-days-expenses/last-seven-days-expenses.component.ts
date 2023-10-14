@@ -3,13 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Receipt } from 'src/app/models/receipt.dto';
 import { AuthService } from 'src/app/auth.service';
 import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-last-seven-days-expenses',
   templateUrl: './last-seven-days-expenses.component.html',
   styleUrls: ['./last-seven-days-expenses.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, IonicModule, LastSevenDaysExpensesComponent],
   providers: [HttpClient]
 })
 export class LastSevenDaysExpensesComponent implements OnInit {

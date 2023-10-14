@@ -1,23 +1,31 @@
-<ion-content [fullscreen]="true">
+<!-- <div class="ion-page" id="main-content"> -->
 
-  <app-navigation></app-navigation>>
 
-  <div class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="end">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>Dashboard</ion-title>
-      </ion-toolbar>
-    </ion-header>
-  </div>
+<ion-header>
+  <app-navigation></app-navigation>
 
-  <div id="container" class="center">
-    <h2>Welcome to YubillY</h2>
-    <app-today-expenses></app-today-expenses>
-    <app-last-seven-days-expenses></app-last-seven-days-expenses>
-    <app-last-thirty-days-expenses></app-last-thirty-days-expenses>
-    <app-last-ten-receipts></app-last-ten-receipts>
-  </div>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+
+
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="4" size-xs="12">
+        <app-today-expenses class="flexcard"></app-today-expenses>
+      </ion-col>
+      <ion-col size-md="4" size-xs="12">
+        <app-last-seven-days-expenses class="flexcard"></app-last-seven-days-expenses>
+      </ion-col>
+      <ion-col size-md="4" size-xs="12">
+        <app-last-thirty-days-expenses class="flexcard"></app-last-thirty-days-expenses>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <app-last-ten-receipts></app-last-ten-receipts>
 </ion-content>
