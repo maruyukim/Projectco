@@ -1,71 +1,79 @@
 <div class="component-border">
   <div class="center-container">
-    <div *ngIf="receipts.length > 0; else noReceipts">
-      <h2>Receipts</h2>
-      <p>Receipts page works!</p>
-      <select class="form-select" aria-label="Default select example">
-        <option selected="">Period</option>
-        <option value="1">ABD</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-
-      <select class="form-select" aria-label="Period select ">
-        <option selected="">Period</option>
-        <option value="1">7 Days</option>
-        <option value="2">30 Days</option>
-        <option value="3">Date Range</option>
-      </select>
-
-      <select class="form-select" aria-label="Merchants select example">
-        <option selected="">Merchants</option>
-        <option value="1">Amazon</option>
-        <option value="2">Costco</option>
-        <option value="3">Warlmart</option>
-      </select>
-
-      <select class="form-select" aria-label="Currencies select example">
-        <option selected="">Currencies</option>
-        <option value="1">CAD</option>
-        <option value="2">EUR</option>
-        <option value="3">TRY</option>
-        <option value="4">USD</option>
-      </select>
-
-      <select class="form-select" aria-label="Labels select example">
-        <option selected="">Labels</option>
-        <option value="1">Business</option>
-        <option value="2">Travel</option>
-        <option value="3">Health</option>
-        <option value="4">Personal</option>
-      </select>
-      <table class="table table-sm">
-        <thead>
-          <tr>
-            <th>DetailBtn</th>
-            <th>attach</th>
-            <th>Date</th>
-            <th>Merchant</th>
-            <th>Amount</th>
-            <th>Label</th>
-            <!-- ... other headers -->
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let receipt of receipts">
-            <td>#</td>
-            <td>##</td>
-            <td>{{ receipt.invoiceDate }}</td>
-            <td>{{ receipt.merchantName }}</td>
-            <td>{{ receipt.total }}</td>
-            <td>{{ receipt.labelName }}</td>
-            <!-- ... other data cells -->
-          </tr>
-        </tbody>
-      </table>
+    <!-- <div *ngIf="receiptsList.length > 0; else noReceipts"> -->
+    <div>
+      <h2 class="h2">Receipts</h2>
+      <br>
+      <div class="row mt-3">
+        <div  class="select-container">
+          <!-- filter select fields  -->
+          <select class="form-control " (change)="onSelectChange()" [(ngModel)]="selectePeriodId">
+            <option value="">Periods</option>
+            <option *ngFor="let period of periodsList" [value]="period.periodId">{{ period.period }}</option>
+          </select>
+          <select class="form-control merchant-select" (change)="onSelectChange()" [(ngModel)]="merchantName">
+            <option value="">Merchants</option>
+            <option *ngFor="let merchant of merchantsList" [value]="merchant.merchantName">{{ merchant.merchantName }}
+            </option>
+          </select>
+          <select class="form-control" (change)="onSelectChange()" [(ngModel)]="currencyCode">
+            <option value="">Currencies</option>
+            <option *ngFor="let currencyCode of currenciesList" [value]="currencyCode.currencyCode">{{
+              currencyCode.currencyCode }}</option>
+          </select>
+          <select class="form-control" (change)="onSelectChange()" [(ngModel)]="selectedLabelId">
+            <option value="">Labels</option>
+            <ng-container *ngFor="let label of labelsList">
+              <option *ngIf="label.inUse" [value]="label.labelId" [ngStyle]="{'background-color': label.labelColor}">{{
+                label.labelName }}</option>
+            </ng-container>
+          </select>
+        </div>
+        <br>
+        <!-- receipts list table -->
+        <table class="table table-hover table-sm">
+          <thead>
+            <tr>
+              <th><span class="material-icons">
+                  keyboard_arrow_down
+                </span></th>
+              <th><i class="material-icons rotate-icon">attachment</i></th>
+              <th>Date</th>
+              <th>Merchant</th>
+              <th>Amount</th>
+              <th>Currency</th>
+              <th>Label</th>
+              <!-- ... other headers -->
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="receiptsList && receiptsList.length > 0; else noReceipts">
+              <tr *ngFor="let receipt of receiptsList" class="table-light">
+                <td>
+                </td>
+                <td>
+                  <ng-container *ngIf="receipt.hasAttachment">
+                    <!-- <a [href]="receipt.preSignedUrl" target="_blank"> -->
+                    <i class="material-icons rotate-icon">attachment</i>
+                    <!-- </a> -->
+                  </ng-container>
+                </td>
+                <td>{{ receipt.invoiceDate }}</td>
+                <td>{{ receipt.merchantName }}</td>
+                <td>{{ receipt.total }}</td>
+                <td>{{ receipt.currency }}</td>
+                <td>{{ receipt.labelName }}</td>
+                <!-- ... other data cells -->
+              </tr>
+            </ng-container>
+            <ng-template #noReceipts>
+              <tr>
+                <td colspan="7">No receipts available.</td>
+              </tr>
+            </ng-template>
+          </tbody>
+        </table>
+      </div>
     </div>
+
   </div>
-  <ng-template #noReceipts>
-    <div>No receipts available.</div>
-  </ng-template>
-</div>
