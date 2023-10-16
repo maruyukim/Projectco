@@ -9,7 +9,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 80%;
     
     /* Optional: Add some padding and background styling */
     padding: 20px;
@@ -23,19 +23,77 @@ body, html {
     border: 1px solid #ccc;
     background-color: #fff;
 }
+h2 {
+    text-align: left;
+  }  
 
 table {
     border-collapse: collapse; /* ensures that borders between cells are shared */
+    border: none; /* Remove default table border */
 }
 
 th, td {
-    border: 1px solid #000; /* change #000 to any color you prefer for the border */
+    border-bottom: 1px solid #ccc; /* Add a horizontal border to cells */
     padding: 8px; /* optional: for some spacing inside cells */
     text-align: left; /* optional: align text to the left */
 }
-
 .component-border {
     border: 2px solid #000; /* Change #000 to any color you prefer for the border */
     border-radius: 8px; /* Optional: for rounded corners */
     padding: 16px; /* Optional: for some spacing between the border and the content */
 }
+.rotate-icon {
+    transform: rotate(-30deg);
+  }  
+
+/* Apply styles to the parent container if needed */
+.select-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust the gap between select elements as needed */
+  }
+  
+  /* Style the select elements */
+  .form-control {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: transparent; /* Set background to transparent to remove it */
+    font-size: 20px;
+    // color: #333;
+    width: 100%; /* Set all selects to 100% width */
+  
+    /* Make the "Merchants" select wider */
+    /* You can adjust the width as needed */
+    &.merchant-select {
+      width: 250px;
+    }
+  }
+  
+  /* Style the select when it's focused */
+  .form-control:focus {
+    outline: none;
+    border-color: #007bff; /* Customize the focus border color */
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5); /* Customize the focus box shadow */
+  }
+  
+  /* Style the select options */
+  .form-control option {
+    font-size: 14px;
+    background-color: transparent; /* Set option background to transparent */
+    // color: #333;
+  }
+  
+  /* Style the select options when hovered */
+  .form-control option:hover {
+    background-color: #007bff; /* Customize the hover background color */
+    color: #fff; /* Customize the hover text color */
+  }
+  
+  /* Style the select options when selected */
+  .form-control option:checked {
+    background-color: #007bff; /* Customize the selected background color */
+    color: #fff; /* Customize the selected text color */
+  }
+  
+  

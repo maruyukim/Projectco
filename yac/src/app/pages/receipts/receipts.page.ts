@@ -10,7 +10,7 @@ import { NavigationComponent } from 'src/app/components/navigation/navigation.co
   templateUrl: './receipts.page.html',
   styleUrls: ['./receipts.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReceiptListComponent, NavigationComponent]
+  imports: [IonicModule, CommonModule, FormsModule, ReceiptListComponent, NavigationComponent, ]
 })
 export class ReceiptsPage implements OnInit {
 
